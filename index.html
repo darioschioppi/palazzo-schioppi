@@ -66,7 +66,7 @@
 
         .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
 
-        /* NAV TABS */
+        /* NAV TABS — desktop */
         .tabs { display: flex; gap: 4px; margin: 32px 0 0; flex-wrap: wrap; }
         .tab-btn {
             padding: 10px 20px;
@@ -82,6 +82,69 @@
         }
         .tab-btn.active { background: var(--ocra); color: white; border-color: var(--ocra); }
         .tab-btn:hover:not(.active) { background: #F5EDD8; color: var(--bronzo); }
+
+        /* MOBILE NAV — dropdown navigator */
+        .mobile-nav {
+            display: none;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--nero);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+        .mobile-nav-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .mobile-nav-label {
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ocra-light);
+            flex: 1;
+        }
+        .mobile-nav-arrow {
+            font-size: 18px;
+            color: var(--ocra);
+            transition: transform 0.25s;
+            margin-left: 12px;
+        }
+        .mobile-nav.open .mobile-nav-arrow { transform: rotate(180deg); }
+        .mobile-nav-dropdown {
+            display: none;
+            background: #1A1410;
+            border-top: 1px solid rgba(200,150,45,0.3);
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .mobile-nav.open .mobile-nav-dropdown { display: block; }
+        .mobile-nav-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 14px 24px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-family: 'Lato', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.75);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .mobile-nav-item:hover { background: rgba(200,150,45,0.12); color: var(--ocra-light); }
+        .mobile-nav-item.active { background: var(--ocra); color: white; }
+
+        @media (max-width: 700px) {
+            .tabs { display: none; }
+            .mobile-nav { display: block; }
+            .tab-panel { padding: 20px 16px; border-radius: 0 0 8px 8px; }
+        }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -342,6 +405,25 @@
         <button class="tab-btn" onclick="showTab('premium')">🏆 Proposta Premium</button>
         <button class="tab-btn" onclick="showTab('capitolato')">📋 Capitolato Tecnico</button>
     </div>
+
+    <!-- MOBILE NAVIGATOR -->
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-trigger" onclick="toggleMobileNav()">
+            <span class="mobile-nav-label" id="mobileNavLabel">📸 Stato Pre-Restauro</span>
+            <span class="mobile-nav-arrow">▼</span>
+        </div>
+        <div class="mobile-nav-dropdown">
+            <button class="mobile-nav-item active" onclick="selectMobileTab('prerestaurant','📸 Stato Pre-Restauro',this)">📸 Stato Pre-Restauro</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('elementi','🏛️ Elementi Liberty',this)">🏛️ Elementi Liberty</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('piano','🔧 Piano di Intervento',this)">🔧 Piano di Intervento</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('cromia','🎨 Cromia',this)">🎨 Cromia</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('cronoprogramma','⏱️ Cronoprogramma',this)">⏱️ Cronoprogramma</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('checklist','✅ Checklist',this)">✅ Checklist</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('gallery','📷 Foto Pre-Restauro',this)">📷 Foto Pre-Restauro</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('premium','🏆 Proposta Premium',this)">🏆 Proposta Premium</button>
+            <button class="mobile-nav-item" onclick="selectMobileTab('capitolato','📋 Capitolato Tecnico',this)">📋 Capitolato Tecnico</button>
+        </div>
+    </nav>
 
     <!-- TAB 1: PRE-RESTAURO -->
     <div id="tab-prerestaurant" class="tab-content active">
@@ -1584,6 +1666,34 @@ function showTab(id) {
     document.getElementById('tab-' + id).classList.add('active');
     event.target.classList.add('active');
 }
+
+/* --- MOBILE NAVIGATOR --- */
+function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+}
+
+function selectMobileTab(id, label, btn) {
+    // switch tab content
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    // update desktop tabs too
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    // update mobile UI
+    document.querySelectorAll('.mobile-nav-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('mobileNavLabel').textContent = label;
+    // close dropdown and scroll to top
+    document.getElementById('mobileNav').classList.remove('open');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// close mobile nav when tapping outside
+document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobileNav');
+    if (nav && !nav.contains(e.target)) {
+        nav.classList.remove('open');
+    }
+});
 
 function openLightbox(src, caption) {
     const lb = document.getElementById('lightbox');
