@@ -340,6 +340,7 @@
         <button class="tab-btn" onclick="showTab('checklist')">✅ Checklist</button>
         <button class="tab-btn" onclick="showTab('gallery')">📷 Foto Pre-Restauro</button>
         <button class="tab-btn" onclick="showTab('premium')">🏆 Proposta Premium</button>
+        <button class="tab-btn" onclick="showTab('capitolato')">📋 Capitolato Tecnico</button>
     </div>
 
     <!-- TAB 1: PRE-RESTAURO -->
@@ -1272,6 +1273,288 @@
         </div>
     </div>
     <!-- /TAB 8 PREMIUM -->
+
+    <!-- TAB 9: CAPITOLATO TECNICO -->
+    <div id="tab-capitolato" class="tab-content">
+        <div class="tab-panel">
+
+            <div class="alert" style="background:linear-gradient(135deg,#3A6B45,#5A9B65);color:#fff;border:none;margin-bottom:28px;">
+                📋 <strong>Capitolato Tecnico — Linee Guida per il Fornitore</strong><br>
+                <span style="font-size:13px;opacity:0.92;">Documento vincolante da consegnare all'impresa esecutrice. Palazzo Schioppi 1912 — Restauro conservativo facciata Liberty. Committente: Famiglia Schioppi — Via V. Emanuele III 91, Frattamaggiore (NA).</span>
+            </div>
+
+            <!-- A: REQUISITI FORNITORE -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">🏅</span>
+                    <h3 class="section-title">A — Requisiti Minimi del Fornitore</h3>
+                </div>
+                <div class="alert alert-urgent">
+                    ⚠️ <strong>ATTENZIONE:</strong> Il committente si riserva di richiedere documentazione probante per ciascun requisito prima dell'inizio lavori. In assenza di tali requisiti, il contratto non sarà stipulato.
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>📜 Qualifiche obbligatorie</h4>
+                        <ul>
+                            <li>Iscrizione Camera di Commercio — Settore Restauro/Edilizia</li>
+                            <li>Almeno <strong>5 anni di esperienza documentata</strong> su edifici storici pre-1950</li>
+                            <li>Referenze su minimo <strong>3 facciate Liberty o Art Déco</strong> completate</li>
+                            <li>Direttore tecnico con diploma o laurea in Restauro / Architettura</li>
+                            <li>Polizza RC professionale valida per l'intera durata dei lavori</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>📸 Documentazione da consegnare PRIMA dei lavori</h4>
+                        <ul>
+                            <li>Portfolio fotografico lavori analoghi (min. 20 foto per cantiere)</li>
+                            <li>Elenco fornitori di materiali con schede tecniche allegate</li>
+                            <li>Cronoprogramma dettagliato firmato</li>
+                            <li>Piano di sicurezza (PSC) redatto da coordinatore abilitato</li>
+                            <li>Campionature colori su supporto 30×30 cm approvate prima di iniziare</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- B: MATERIALI AMMESSI -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">✅</span>
+                    <h3 class="section-title">B — Materiali Ammessi</h3>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🪨 Intonaci e malte</h4>
+                        <ul>
+                            <li><strong>Calce idraulica naturale NHL 3.5</strong> (per iniezioni consolidanti)</li>
+                            <li><strong>Calce idraulica NHL 2</strong> (per stuccature fini e giunti)</li>
+                            <li>Grassello di calce stagionato min. 6 mesi</li>
+                            <li>Inerti locali compatibili (granulometria 0–4 mm)</li>
+                            <li>Pozzolana naturale come additivo (max 15%)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🎨 Pitture e finiture</h4>
+                        <ul>
+                            <li><strong>Keim Granital</strong> — pittura minerale ai silicati</li>
+                            <li><strong>Keim Limelit</strong> — pittura alla calce certificata</li>
+                            <li>Pitture minerali a base silicato di potassio</li>
+                            <li>Idrofugo silossanico traspirante (es. Mapei Antipluviol)</li>
+                            <li>Consolidante etilsilicato per stucchi (es. Primal AC-33)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C: MATERIALI VIETATI -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">🚫</span>
+                    <h3 class="section-title">C — Materiali Assolutamente Vietati</h3>
+                </div>
+                <div class="alert alert-danger">
+                    🔴 <strong>USO VIETATO:</strong> L'utilizzo dei seguenti materiali comporta l'immediata sospensione del cantiere e l'obbligo di ripristino a spese dell'impresa.
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>❌ Pitture vietate</h4>
+                        <ul>
+                            <li>Qualsiasi pittura acrilica o vinilica filmogena</li>
+                            <li>Pitture elastomeriche (impermeabilizzanti plastici)</li>
+                            <li>Pitture al quarzo su supporto storico</li>
+                            <li>Vernici epossidiche o poliuretaniche su facciata</li>
+                            <li>Coloranti sintetici non compatibili con calce</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>❌ Malte e adesivi vietati</h4>
+                        <ul>
+                            <li>Cemento Portland in qualsiasi forma su elementi Liberty</li>
+                            <li>Malta cementizia per stuccature decorative</li>
+                            <li>Colle epossidiche per riposizionamento stucchi</li>
+                            <li>Schiume poliuretaniche espandenti</li>
+                            <li>Siliconi colorati su superfici storiche</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <h4>⚠️ Perché questi divieti sono critici</h4>
+                    <p>Il cemento Portland è incompatibile con la calce storica: crea tensioni interne che fratturano il supporto originale. Le pitture plastiche impermeabilizzano la facciata impedendo la traspirazione, causando accumulo di umidità e distacchi a medio termine.</p>
+                </div>
+            </div>
+
+            <!-- D: LESIONE VERTICALE -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">🔴</span>
+                    <h3 class="section-title">D — Intervento Urgente: Lesione Verticale</h3>
+                </div>
+                <div class="alert alert-danger">
+                    🔴 <strong>PRIORITÀ ASSOLUTA:</strong> La lesione verticale al coronamento deve essere il <strong>primo intervento</strong> da eseguire, prima di qualsiasi opera di tinteggiatura o rifinitura.
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>📍 Localizzazione</h4>
+                        <ul>
+                            <li>Coronamento sommitale della facciata</li>
+                            <li>Zona conchiglia centrale — torciglioni laterali</li>
+                            <li>Crack verticale esteso su più elementi decorativi</li>
+                            <li><strong>Visibile nelle foto di rilievo (ultima foto album)</strong></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🔧 Procedura di consolidamento</h4>
+                        <ul>
+                            <li>Iniezioni di calce idraulica NHL 3.5 in pressione (≤0,5 bar)</li>
+                            <li>Posa fessurimetro meccanico per monitoraggio 30 giorni</li>
+                            <li>Solo dopo stabilizzazione: stuccatura con NHL 2</li>
+                            <li>Scuci-cuci per eventuali mattoni lesionati</li>
+                            <li>Documentazione fotografica ogni fase (obbligo contrattuale)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E: PROCEDURE OPERATIVE -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">🔧</span>
+                    <h3 class="section-title">E — Procedure Operative Obbligatorie</h3>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>📷 Documentazione fotografica</h4>
+                        <ul>
+                            <li>Foto ad alta risoluzione PRIMA di ogni intervento</li>
+                            <li>Foto DURANTE ogni fase lavorativa</li>
+                            <li>Foto DOPO completamento di ogni elemento</li>
+                            <li>Scala metrica visibile in ogni foto</li>
+                            <li>Consegna su cloud condiviso con il committente</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🧪 Campionature e approvazioni</h4>
+                        <ul>
+                            <li>Campione colore fondo: approvazione scritta committente</li>
+                            <li>Campione colore decorazioni: approvazione scritta committente</li>
+                            <li>Test in opera 0,5 m² prima di procedere su tutta la superficie</li>
+                            <li>Nessuna variante ai materiali senza autorizzazione scritta</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🏛️ Tutela elementi Liberty</h4>
+                        <ul>
+                            <li>Lunetta allegorica con locomotiva: intervento solo da restauratore qualificato</li>
+                            <li>Fregi floreali: nessuna semplificazione o sostituzione</li>
+                            <li>Torciglioni: reintegrazione a calco, mai a resina</li>
+                            <li>Bugnato: mantenimento texture originale</li>
+                            <li>Cornici: profilo da ridisegnare su sagoma originale</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>⏰ Tempi di esecuzione</h4>
+                        <ul>
+                            <li>Consolidamento/iniezioni: attendere min. 28 giorni prima di tinteggiare</li>
+                            <li>Stucchi di rifacimento: min. 21 giorni di maturazione</li>
+                            <li>Pittura: max 2 mani a distanza di 24h ciascuna</li>
+                            <li>Idrofugo: applicare solo su superficie asciutta (UR &lt;75%)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- F: COLORI -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">🎨</span>
+                    <h3 class="section-title">F — Specifica Cromatica Vincolante</h3>
+                </div>
+                <div class="alert alert-info">
+                    ℹ️ I seguenti colori sono stati determinati dall'analisi stratigrafica delle 18 foto di rilievo. Sono vincolanti salvo diversa indicazione scritta del committente.
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🖌️ Palette confermata</h4>
+                        <ul>
+                            <li><strong>Fondo facciata:</strong> Ocra gialla calda — Keim Granital colore 9012 (o equivalente approvato)</li>
+                            <li><strong>Decorazioni Liberty:</strong> Bianco avorio calce — Keim Limelit colore 0001</li>
+                            <li><strong>Cornici e fregi:</strong> Ocra scura / terra d'ombra — contrasto leggero</li>
+                            <li><strong>Inferriate e cancello:</strong> Verde ossido di cromo — Keim Enamelcolor</li>
+                            <li><strong>Portone legno:</strong> Tinta naturale noce medio con finitura opaca</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🚫 Colori vietati</h4>
+                        <ul>
+                            <li>Bianco puro (troppo freddo, non storico)</li>
+                            <li>Grigi qualsiasi (non compatibili con Liberty napoletano)</li>
+                            <li>Colori sintetici sgargianti</li>
+                            <li>Finiture lucide o satinate su superfici esterne</li>
+                            <li>RAL standard non approvati per edifici storici</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- G: CONTROLLO QUALITÀ -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">✅</span>
+                    <h3 class="section-title">G — Controllo Qualità e Collaudo</h3>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🔍 Diritti del committente</h4>
+                        <ul>
+                            <li>Accesso al cantiere in qualsiasi momento senza preavviso</li>
+                            <li>Richiesta di campionatura in corso d'opera</li>
+                            <li>Sospensione lavori per non conformità senza penali</li>
+                            <li>Ispezione tecnica da professionista indipendente</li>
+                            <li>Richiesta di rifacimento a spese dell'impresa per lavori non conformi</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>📝 Collaudo finale</h4>
+                        <ul>
+                            <li>Ispezione visiva completa con scala mobile</li>
+                            <li>Test di aderenza pittura (metodo cross-cut)</li>
+                            <li>Verifica traspirabilità con test Karsten</li>
+                            <li>Consegna di tutte le schede tecniche materiali usati</li>
+                            <li>Garanzia minima 5 anni su tinteggiatura e stucchi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIRMA -->
+            <div class="analysis-box">
+                <h3>📄 Clausola di Accettazione</h3>
+                <p style="color:rgba(255,255,255,0.85);line-height:1.7;font-size:14px;">
+                    L'impresa esecutrice, sottoscrivendo il contratto d'appalto, dichiara di aver letto e accettato integralmente il presente Capitolato Tecnico. Qualsiasi difformità rispetto alle specifiche indicate sarà contestata per iscritto e comporterà l'obbligo di ripristino a totale carico dell'impresa, fatta salva ogni altra azione risarcitoria del committente.
+                </p>
+                <div class="analysis-grid" style="margin-top:20px;">
+                    <div class="analysis-item">
+                        <div class="label">Committente</div>
+                        <div class="value">Famiglia Schioppi</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="label">Immobile</div>
+                        <div class="value">Via V. Emanuele III 91, Frattamaggiore (NA)</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="label">Anno</div>
+                        <div class="value">2026</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="label">Standard di riferimento</div>
+                        <div class="value">EN 1504 · UNI 11182 · NTC 2018 · Carta di Cracovia 2000</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /TAB 9 CAPITOLATO -->
 
     <!-- LIGHTBOX -->
     <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:9999; cursor:pointer; flex-direction:column; align-items:center; justify-content:center;">
