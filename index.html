@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restauro Facciata — Palazzo Schioppi 1912 | Liberty Napoletano</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+        :root {
+            --ocra: #C8962D;
+            --ocra-light: #E8C060;
+            --verde: #3A6B45;
+            --bianco: #FAF6EE;
+            --grigio-pietra: #8B8880;
+            --nero: #2A2420;
+            --bronzo: #8B6914;
+            --rosso: #C0392B;
+            --giallo: #F39C12;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { font-family: 'Lato', sans-serif; background-color: var(--bianco); color: var(--nero); line-height: 1.7; }
+
+        header {
+            background: linear-gradient(135deg, #2A2420 0%, #4A3828 50%, #2A2420 100%);
+            color: var(--bianco);
+            text-align: center;
+            padding: 60px 20px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(200,150,45,0.05) 20px, rgba(200,150,45,0.05) 40px);
+        }
+
+        .header-ornament { font-size: 48px; margin-bottom: 16px; display: block; }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 5vw, 42px);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: var(--ocra-light);
+        }
+
+        header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(14px, 2.5vw, 20px);
+            font-weight: 400;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 16px;
+        }
+
+        .header-sub { font-size: 13px; color: rgba(255,255,255,0.5); letter-spacing: 3px; text-transform: uppercase; }
+
+        .liberty-border { height: 8px; background: linear-gradient(90deg, var(--verde), var(--ocra), var(--verde), var(--ocra), var(--verde)); }
+
+        .badge { display: inline-block; background: var(--ocra); color: white; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; margin: 4px; }
+
+        .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+        /* NAV TABS */
+        .tabs { display: flex; gap: 4px; margin: 32px 0 0; flex-wrap: wrap; }
+        .tab-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #E0D8C8;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #888;
+            transition: all 0.2s;
+        }
+        .tab-btn.active { background: var(--ocra); color: white; border-color: var(--ocra); }
+        .tab-btn:hover:not(.active) { background: #F5EDD8; color: var(--bronzo); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .tab-panel {
+            background: white;
+            border: 2px solid #E0D8C8;
+            border-radius: 0 8px 8px 8px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+
+        .intro-section {
+            background: white;
+            border-left: 5px solid var(--ocra);
+            padding: 28px;
+            margin: 40px 0 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .intro-section p { font-size: 15px; color: #555; }
+
+        .section { margin: 40px 0; }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--ocra);
+        }
+
+        .section-number {
+            width: 40px; height: 40px;
+            background: var(--ocra);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 17px; font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(16px, 3vw, 22px); color: var(--nero); }
+        .section-emoji { font-size: 26px; flex-shrink: 0; }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 18px; }
+
+        .card {
+            background: var(--bianco);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            border-top: 3px solid var(--ocra);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+        .card h4 { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--bronzo); margin-bottom: 10px; }
+        .card ul { list-style: none; padding: 0; }
+        .card ul li { padding: 4px 0 4px 16px; font-size: 13px; color: #555; position: relative; }
+        .card ul li::before { content: '›'; position: absolute; left: 0; color: var(--ocra); font-weight: 700; }
+
+        .alert { padding: 14px 18px; border-radius: 8px; margin: 14px 0; font-size: 14px; }
+        .alert-urgent { background: #FEF3CD; border-left: 4px solid #F5A623; color: #7A5C00; }
+        .alert-info { background: #E8F4FD; border-left: 4px solid #3498DB; color: #1A5276; }
+        .alert-success { background: #E8F8E8; border-left: 4px solid var(--verde); color: #1E5630; }
+        .alert-danger { background: #FDECEC; border-left: 4px solid var(--rosso); color: #7B1B1B; }
+
+        /* DEGRADO TABLE */
+        .degrado-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+
+        .degrado-card {
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 4px solid;
+        }
+
+        .degrado-card.urgente { background: #FFF5F5; border-color: var(--rosso); }
+        .degrado-card.importante { background: #FFFBF0; border-color: var(--giallo); }
+        .degrado-card.ordinario { background: #F0FFF4; border-color: var(--verde); }
+
+        .degrado-card .badge-level {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .urgente .badge-level { background: var(--rosso); color: white; }
+        .importante .badge-level { background: var(--giallo); color: white; }
+        .ordinario .badge-level { background: var(--verde); color: white; }
+
+        .degrado-card h4 { font-size: 14px; font-weight: 700; color: var(--nero); margin-bottom: 6px; }
+        .degrado-card p { font-size: 13px; color: #555; }
+
+        /* ELEMENTI LIST */
+        .elementi-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-top: 16px; }
+
+        .elemento-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+        }
+
+        .elemento-emoji { font-size: 22px; flex-shrink: 0; line-height: 1.3; }
+        .elemento-text strong { display: block; font-size: 13px; color: var(--bronzo); }
+        .elemento-text span { font-size: 12px; color: #777; }
+
+        /* COLOR PALETTE */
+        .color-palette { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
+        .color-chip { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .color-swatch { width: 65px; height: 65px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
+        .color-name { font-size: 11px; text-align: center; color: #555; max-width: 80px; font-weight: 600; }
+
+        /* TIMELINE */
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before { content: ''; position: absolute; left: 9px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--ocra), var(--verde)); }
+        .timeline-item { position: relative; margin-bottom: 22px; padding: 14px 18px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .timeline-item::before { content: ''; position: absolute; left: -22px; top: 18px; width: 12px; height: 12px; background: var(--ocra); border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 3px var(--ocra-light); }
+        .timeline-item h4 { font-family: 'Playfair Display', serif; color: var(--bronzo); font-size: 14px; margin-bottom: 4px; }
+        .timeline-item .duration { display: inline-block; background: var(--verde); color: white; font-size: 11px; padding: 2px 10px; border-radius: 12px; margin-bottom: 6px; }
+
+        /* TABLE */
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.07); font-size: 13px; }
+        thead tr { background: var(--nero); color: var(--ocra-light); }
+        thead th { padding: 12px 14px; text-align: left; font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 1px; }
+        tbody tr:nth-child(even) { background: #F9F6EE; }
+        tbody td { padding: 10px 14px; border-bottom: 1px solid #EEE; color: #444; }
+        tbody td:first-child { font-weight: 600; color: var(--bronzo); }
+
+        /* ANALYSIS BOX */
+        .analysis-box { background: linear-gradient(135deg, #2A2420, #4A3828); color: var(--bianco); border-radius: 12px; padding: 28px; margin: 24px 0; }
+        .analysis-box h3 { font-family: 'Playfair Display', serif; color: var(--ocra-light); font-size: 18px; margin-bottom: 18px; border-bottom: 1px solid rgba(200,150,45,0.3); padding-bottom: 10px; }
+        .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+        .analysis-item { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 12px; }
+        .analysis-item .label { font-size: 10px; color: var(--ocra-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .analysis-item .value { font-size: 13px; color: white; }
+
+        /* CHECKLIST */
+        ul.checklist { list-style: none; padding: 0; }
+        ul.checklist li { padding: 6px 0 6px 28px; position: relative; font-size: 13px; border-bottom: 1px solid #F0EDE8; color: #444; }
+        ul.checklist li::before { content: '☐'; position: absolute; left: 0; color: var(--ocra); font-size: 16px; }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: linear-gradient(135deg, #FFF8E8, #FFF3D0);
+            border: 2px solid var(--ocra-light);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        .highlight-box h4 { font-family: 'Playfair Display', serif; color: var(--bronzo); font-size: 18px; margin-bottom: 12px; }
+
+        /* FOOTER */
+        footer { background: var(--nero); color: rgba(255,255,255,0.5); text-align: center; padding: 40px 20px; margin-top: 60px; }
+        footer .footer-logo { font-family: 'Playfair Display', serif; color: var(--ocra-light); font-size: 20px; margin-bottom: 8px; }
+        footer p { font-size: 12px; }
+
+        @media (max-width: 600px) {
+            header { padding: 36px 16px; }
+            .card-grid, .degrado-grid, .elementi-list { grid-template-columns: 1fr; }
+            .color-palette { justify-content: center; }
+            .tabs { gap: 2px; }
+            .tab-btn { padding: 8px 12px; font-size: 12px; }
+            .tab-panel { padding: 20px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="liberty-border"></div>
+
+<header>
+    <span class="header-ornament">🏛️</span>
+    <h1>RESTAURO FACCIATA</h1>
+    <h2>Palazzo Schioppi — Via Vittorio Emanuele III 91</h2>
+    <p class="header-sub">Frattamaggiore (NA) &nbsp;·&nbsp; 1912 &nbsp;·&nbsp; Stile Liberty</p>
+    <div style="margin-top: 20px;">
+        <span class="badge">Piano di Restauro Conservativo</span>
+        <span class="badge">Liberty Napoletano</span>
+        <span class="badge">2026</span>
+    </div>
+</header>
+
+<div class="liberty-border"></div>
+
+<div class="container">
+
+    <div class="intro-section">
+        <p>
+            Il <strong>Palazzo Schioppi</strong> è una testimonianza preziosa del Liberty meridionale a Frattamaggiore.
+            Costruito nel <strong>1912</strong>, la sua facciata conserva un apparato decorativo di notevole qualità:
+            lunetta allegorica con locomotiva, cariatidi femminili, leone in bassorilievo, fascia a scacchiera e festoni di frutta.
+            Il presente piano d'intervento è redatto seguendo i principi del restauro conservativo secondo la <em>Carta del Restauro</em>
+            e le linee guida della Soprintendenza ABAP di Napoli.
+        </p>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('prerestaurant')">📸 Stato Pre-Restauro</button>
+        <button class="tab-btn" onclick="showTab('elementi')">🏛️ Elementi Liberty</button>
+        <button class="tab-btn" onclick="showTab('piano')">🔧 Piano di Intervento</button>
+        <button class="tab-btn" onclick="showTab('cromia')">🎨 Cromia</button>
+        <button class="tab-btn" onclick="showTab('cronoprogramma')">⏱️ Cronoprogramma</button>
+        <button class="tab-btn" onclick="showTab('checklist')">✅ Checklist</button>
+    </div>
+
+    <!-- TAB 1: PRE-RESTAURO -->
+    <div id="tab-prerestaurant" class="tab-content active">
+        <div class="tab-panel">
+
+            <div class="analysis-box">
+                <h3>📸 Rilievo Fotografico Pre-Restauro — 16 Foto Analizzate</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-item">
+                        <div class="label">Stato Generale</div>
+                        <div class="value">Mediocre/scadente — degrado diffuso ma apparato decorativo ancora leggibile</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="label">Cantiere</div>
+                        <div class="value">✅ Già avviato — ponteggi allestiti, materiali Kerakoll presenti, stuccature fresche in corso</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="label">Cromia Attuale</div>
+                        <div class="value">Fondo ocra-beige invecchiato · Scacchiera bianco/grigio-verde · Infissi verde scuro</div>
+                    </div>
+                    <div class="analysis-item">
+                        <div class="label">Elemento Eccezionale</div>
+                        <div class="value">Lunetta allegorica con figura femminile + locomotiva (1912) — valore storico-documentale unico</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">⚠️</span>
+                    <h3 class="section-title">Quadro del Degrado — Priorità di Intervento</h3>
+                </div>
+
+                <div class="degrado-grid">
+                    <div class="degrado-card urgente">
+                        <span class="badge-level">🔴 Urgente</span>
+                        <h4>Lesione Verticale Passante</h4>
+                        <p>Fessura strutturale sul campo intonacato — monitoraggio immediato, possibile causa assestamento fondazioni.</p>
+                    </div>
+                    <div class="degrado-card urgente">
+                        <span class="badge-level">🔴 Urgente</span>
+                        <h4>Cornicione Sommitale</h4>
+                        <p>Intonaco completamente caduto, muratura grezza e travetti esposti. Rischio caduta frammenti su via pubblica.</p>
+                    </div>
+                    <div class="degrado-card urgente">
+                        <span class="badge-level">🔴 Urgente</span>
+                        <h4>Conchiglia Centrale</h4>
+                        <p>Lacuna grave — ridotta a scheletro di malta con anima muraria a vista. Perdita volumetrica severa.</p>
+                    </div>
+                    <div class="degrado-card importante">
+                        <span class="badge-level">🟡 Importante</span>
+                        <h4>Modiglioni/Mensole</h4>
+                        <p>Lacuna profonda nel modiglione centrale, anima muraria esposta. Decoesione diffusa della malta.</p>
+                    </div>
+                    <div class="degrado-card importante">
+                        <span class="badge-level">🟡 Importante</span>
+                        <h4>Lunetta Allegorica</h4>
+                        <p>Mancanze nel drappeggio e nel braccio della figura. Stuccature fresche già parzialmente eseguite ✅</p>
+                    </div>
+                    <div class="degrado-card importante">
+                        <span class="badge-level">🟡 Importante</span>
+                        <h4>Festoni di Frutta</h4>
+                        <p>Erosione avanzata delle melagrane/pigne in stucco. Perdita di modellato e definizione dei dettagli.</p>
+                    </div>
+                    <div class="degrado-card importante">
+                        <span class="badge-level">🟡 Importante</span>
+                        <h4>Fascia a Scacchiera</h4>
+                        <p>Alcune tessere ceramiche mancanti, disconnesse o con smaltatura perduta. Verifica adesione necessaria.</p>
+                    </div>
+                    <div class="degrado-card ordinario">
+                        <span class="badge-level">🟢 Ordinario</span>
+                        <h4>Depositi e Croste Nere</h4>
+                        <p>Patine grigie diffuse da particolato atmosferico. Croste coerenti negli aggetti riparati dalla pioggia.</p>
+                    </div>
+                    <div class="degrado-card ordinario">
+                        <span class="badge-level">🟢 Ordinario</span>
+                        <h4>Dilavamento Cromatico</h4>
+                        <p>Generalizzato su tutta la facciata. Tinteggiatura storica quasi completamente perduta.</p>
+                    </div>
+                    <div class="degrado-card ordinario">
+                        <span class="badge-level">🟢 Ordinario</span>
+                        <h4>Infissi</h4>
+                        <p>Vernice decoesa e opacizzata. Legno potenzialmente degradato da umidità. Colore già corretto (verde scuro) ✅</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB 2: ELEMENTI LIBERTY -->
+    <div id="tab-elementi" class="tab-content">
+        <div class="tab-panel">
+
+            <div class="highlight-box">
+                <h4>🌟 Elemento di Eccezionale Valore Storico</h4>
+                <p>La <strong>lunetta allegorica con locomotiva</strong> è un documento iconografico rarissimo: nel 1912, anno di costruzione,
+                l'Italia viveva il boom ferroviario e industriale. L'allegoria del Progresso con treno, figura femminile e ruota industriale
+                è una firma del periodo giolittiano. Va conservata e restaurata con la massima cura — è il cuore narrativo del palazzo.</p>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">🏛️</span>
+                    <h3 class="section-title">Inventario Completo Elementi Decorativi</h3>
+                </div>
+
+                <div class="elementi-list">
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🚂</span>
+                        <div class="elemento-text">
+                            <strong>Lunetta Allegorica</strong>
+                            <span>Figura femminile + locomotiva + ruota industriale (1912)</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🐚</span>
+                        <div class="elemento-text">
+                            <strong>Grande Conchiglia/Ventaglio</strong>
+                            <span>Elemento iconico del coronamento centrale</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">👩</span>
+                        <div class="elemento-text">
+                            <strong>Cariatidi Femminili</strong>
+                            <span>Mensole figurate con volto femminile idealizzato</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🦁</span>
+                        <div class="elemento-text">
+                            <strong>Leone/Pantera in Bassorilievo</strong>
+                            <span>Felino disteso con motivi d'acanto — simbolo di nobiltà</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🍇</span>
+                        <div class="elemento-text">
+                            <strong>Festoni di Frutta</strong>
+                            <span>Melagrane e frutti d'acanto sui modiglioni</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🔲</span>
+                        <div class="elemento-text">
+                            <strong>Fascia a Scacchiera Bicroma</strong>
+                            <span>Bianco/grigio-verde — corre su tutta la facciata</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🌀</span>
+                        <div class="elemento-text">
+                            <strong>Cornici a Torciglione</strong>
+                            <span>Doppie sopra e sotto la scacchiera</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🌸</span>
+                        <div class="elemento-text">
+                            <strong>Fregio a Palmette/Anthemion</strong>
+                            <span>Motivi a ventaglio ripetuti nel registro inferiore</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🥚</span>
+                        <div class="elemento-text">
+                            <strong>Modanature a Ovoli e Dardi</strong>
+                            <span>Kymation ionico nelle cornici orizzontali</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🌺</span>
+                        <div class="elemento-text">
+                            <strong>Rosette Quadrilobate</strong>
+                            <span>Entro riquadri come elementi di raccordo</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🏛️</span>
+                        <div class="elemento-text">
+                            <strong>Portale d'Ingresso ad Arco</strong>
+                            <span>Con anthemion, dentelli e archivolta decorata</span>
+                        </div>
+                    </div>
+                    <div class="elemento-item">
+                        <span class="elemento-emoji">🌿</span>
+                        <div class="elemento-text">
+                            <strong>Ghirlande e Foglie d'Acanto</strong>
+                            <span>Motivi fitomorfi nelle specchiature laterali</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB 3: PIANO DI INTERVENTO -->
+    <div id="tab-piano" class="tab-content">
+        <div class="tab-panel">
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h3 class="section-title">Iter Burocratico</h3>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>📜 Soprintendenza ABAP Napoli</h4>
+                        <ul>
+                            <li>Verifica vincolo ex D.Lgs. 42/2004</li>
+                            <li>Autorizzazione preventiva obbligatoria</li>
+                            <li>Relazione storica sull'edificio</li>
+                            <li>Campioni stratigrafici colori originali</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🏢 Comune di Frattamaggiore</h4>
+                        <ul>
+                            <li>SCIA o Permesso di Costruire</li>
+                            <li>Parere ASL ponteggi su via pubblica</li>
+                            <li>Occupazione suolo pubblico</li>
+                            <li>Piano di sicurezza D.Lgs. 81/2008</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>💰 Agevolazioni Fiscali</h4>
+                        <ul>
+                            <li>Bonus facciate (verificare disponibilità)</li>
+                            <li>Contributi regionali edifici storici</li>
+                            <li>Detrazioni IRPEF ristrutturazioni</li>
+                            <li>IVA agevolata 10%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h3 class="section-title">Pulitura Superfici</h3>
+                </div>
+                <div class="alert alert-info">
+                    ℹ️ Obbligatorio eseguire <strong>test di pulitura a campione</strong> su area non visibile prima di procedere.
+                </div>
+                <table>
+                    <thead><tr><th>Superficie</th><th>Metodo</th><th>Note</th></tr></thead>
+                    <tbody>
+                        <tr><td>Intonaci lisci</td><td>Acqua nebulizzata ≤5 bar</td><td>Incrostazioni superficiali</td></tr>
+                        <tr><td>Decori Liberty (conchiglia, cariatidi, leone)</td><td>Pulitura laser o microsabbiatrice</td><td>Massima delicatezza</td></tr>
+                        <tr><td>Patine biologiche</td><td>Biocida + risciacquo dopo 72h</td><td>Applicazione a pennello</td></tr>
+                        <tr><td>Croste nere da smog</td><td>Impacchi chelanti + spazzola morbida</td><td>Vietata sabbiatura</td></tr>
+                        <tr><td>Lunetta allegorica</td><td>Laser + microsabbiatrice a pressione minima</td><td>Elemento di massimo pregio</td></tr>
+                        <tr><td>Ferro ringhiere</td><td>Sabbiatura a secco SP 2.5 + primer</td><td>Verificare sezione residua</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h3 class="section-title">Consolidamento e Restauro Stucchi</h3>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>💉 Consolidamento Distacchi</h4>
+                        <ul>
+                            <li>Iniezioni boiacca calce NHL 3.5</li>
+                            <li>Siringhe a bassa pressione (max 0.5 bar)</li>
+                            <li>Mappatura distacchi con percussione</li>
+                            <li>Pre-consolidamento prima della pulitura</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🚂 Lunetta Allegorica</h4>
+                        <ul>
+                            <li>Consolidamento in situ delle lacune</li>
+                            <li>Reintegro con stucco di calce e cocciopesto</li>
+                            <li>Modellazione manuale da calco/foto storica</li>
+                            <li>Stesura a velatura finale (acquerello)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🐚 Conchiglia Centrale</h4>
+                        <ul>
+                            <li>Anima: ancoraggio con perni inox + rete fibra</li>
+                            <li>Ricostruzione volumetrica con NHL + grassello</li>
+                            <li>Modellazione con sagoma metallica ad hoc</li>
+                            <li>Finitura in marmorino di calce</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🔲 Fascia a Scacchiera</h4>
+                        <ul>
+                            <li>Verifica adesione tessere con percussione</li>
+                            <li>Iniezione sotto le tessere decoese</li>
+                            <li>Sostituzione tessere mancanti con ceramica analoga</li>
+                            <li>Fugatura con malta di calce grigia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h3 class="section-title">Lavorazioni Terrazzi e Balconi</h3>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🏠 Impermeabilizzazione</h4>
+                        <ul>
+                            <li>Membrana elastomerica armata in TNT</li>
+                            <li>Protezione in cementizio armato</li>
+                            <li>Pendenze min 1.5% verso pluviali</li>
+                            <li>Raccordi ad angolo rinforzati</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🔲 Pavimentazione Liberty</h4>
+                        <ul>
+                            <li>Cotto fatto a mano napoletano 20x20</li>
+                            <li>Alt: cementine liberty geometriche</li>
+                            <li>Bordo in listello di cotto sagomato</li>
+                            <li>Trattamento antimacchia finale</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>⚙️ Ringhiere Ferro Battuto</h4>
+                        <ul>
+                            <li>Sabbiatura a secco SP 2.5 min</li>
+                            <li>Primer silicati di zinco bicomponente</li>
+                            <li>Finitura poliuretanica UV stabile</li>
+                            <li>Disegno liberty: volute e fiori stilizzati</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>📐 Normativa</h4>
+                        <ul>
+                            <li>Altezza min parapetto: <strong>1,10 m</strong></li>
+                            <li>Resistenza 200 kg/ml (balconi agibili)</li>
+                            <li>Verifica carbonatazione cls (EN 1504)</li>
+                            <li>Eventuale rinforzo con FRP</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h3 class="section-title">Trattamenti Protettivi Finali</h3>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🛡️ Idrofugo Trasparente</h4>
+                        <ul>
+                            <li>Silossanico bicomponente su tutta la facciata</li>
+                            <li>Traspirante (SD &lt; 0.1 m) — non filmogeno</li>
+                            <li>Protegge dall'acqua senza alterare colore</li>
+                            <li>Durata: 15-20 anni</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>💎 Consolidante Stucchi</h4>
+                        <ul>
+                            <li>Silicato di etile sui decori scolpiti</li>
+                            <li>3 mani a saturazione (24h intervallo)</li>
+                            <li>Non altera l'aspetto cromatico</li>
+                            <li>Essenziale per lunetta e leone</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🚫 Antigraffiti</h4>
+                        <ul>
+                            <li>Film sacrificale semi-permanente</li>
+                            <li>Basamento fino a h. 2,5 m</li>
+                            <li>Compatibile con supporto a calce</li>
+                            <li>Rinnovo ogni 5 anni</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TAB 4: CROMIA -->
+    <div id="tab-cromia" class="tab-content">
+        <div class="tab-panel">
+            <div class="alert alert-success">
+                ✅ <strong>Principio fondamentale:</strong> Tutti i colori in <strong>tinte a base di calce</strong> (Keim Granital, Limelit).
+                <strong>Vietate le pitture plastiche filmogene</strong> — soffocano l'intonaco storico causando bolle e distacchi.
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-emoji">🎨</span>
+                    <h3 class="section-title">Palette Colori Storica Confermata da 16 Foto</h3>
+                </div>
+
+                <div class="color-palette">
+                    <div class="color-chip">
+                        <div class="color-swatch" style="background: #C8962D;"></div>
+                        <div class="color-name">Ocra caldo<br><small>NCS S 1020-Y20R</small></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="color-swatch" style="background: #F0E6C8;"></div>
+                        <div class="color-name">Bianco avorio<br><small>Latte di calce</small></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="color-swatch" style="background: #7A8C78;"></div>
+                        <div class="color-name">Grigio-verde<br><small>Tessere scacchiera</small></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="color-swatch" style="background: #3A6B45;"></div>
+                        <div class="color-name">Verde inglese<br><small>RAL 6005 Infissi</small></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="color-swatch" style="background: #5A4A3A;"></div>
+                        <div class="color-name">Marrone noce<br><small>Alt. infissi</small></div>
+                    </div>
+                    <div class="color-chip">
+                        <div class="color-swatch" style="background: #6A6860;"></div>
+                        <div class="color-name">Grigio piperno<br><small>Basamento</small></div>
+                    </div>
+                </div>
+
+                <table style="margin-top: 20px;">
+                    <thead><tr><th>Elemento</th><th>Colore</th><th>Prodotto</th></tr></thead>
+                    <tbody>
+                        <tr><td>Fondo facciata</td><td>Ocra caldo — NCS S 1020-Y20R</td><td>Keim Granital / Limelit</td></tr>
+                        <tr><td>Cornici e modanature</td><td>Bianco di calce puro</td><td>Calce idrata + stabilizzante</td></tr>
+                        <tr><td>Fascia a scacchiera (chiaro)</td><td>Bianco avorio</td><td>Keim Granital</td></tr>
+                        <tr><td>Fascia a scacchiera (scuro)</td><td>Grigio-verde/celadon</td><td>Keim Granital (da campione)</td></tr>
+                        <tr><td>Basamento/zoccolatura</td><td>Grigio piperno simulato</td><td>Intonachino al quarzo grigio</td></tr>
+                        <tr><td>Persiane e infissi</td><td>Verde inglese RAL 6005</td><td>Smalto all'acqua satinato</td></tr>
+                        <tr><td>Ringhiere ferro battuto</td><td>Nero grafite / verde bottiglia</td><td>Antiruggine zinco + finitura</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 5: CRONOPROGRAMMA -->
+    <div id="tab-cronoprogramma" class="tab-content">
+        <div class="tab-panel">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>🚨 Messa in Sicurezza Urgente</h4>
+                    <span class="duration">1-2 settimane</span>
+                    <p style="font-size:12px;color:#666;">Rete di contenimento sul cornicione, monitoraggio lesione verticale, pre-consolidamento stucchi decoesi.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>🗂️ Rilievi e Progetto Esecutivo</h4>
+                    <span class="duration">4-6 settimane</span>
+                    <p style="font-size:12px;color:#666;">Fotogrammetria, analisi stratigrafiche, indagini chimiche, relazione storica, elaborati grafici.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>📋 Iter Burocratico</h4>
+                    <span class="duration">60-120 giorni</span>
+                    <p style="font-size:12px;color:#666;">Autorizzazioni Soprintendenza, SCIA/PDC Comune, OSP per ponteggio.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>🧹 Pulitura + Consolidamento</h4>
+                    <span class="duration">3-4 settimane</span>
+                    <p style="font-size:12px;color:#666;">Test di pulitura, trattamento biologico, iniezioni di consolidamento.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>🚂 Restauro Lunetta Allegorica</h4>
+                    <span class="duration">2-3 settimane</span>
+                    <p style="font-size:12px;color:#666;">Intervento specialistico su elemento di pregio. Reintegro lacune, modellazione, velatura pittorica.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>🔧 Intonaci, Modanature e Stucchi</h4>
+                    <span class="duration">4-6 settimane</span>
+                    <p style="font-size:12px;color:#666;">Ripristino intonaci, riprofilatura cornici, restauro conchiglia, cariatidi, leone, festoni.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>🎨 Tinteggiatura</h4>
+                    <span class="duration">2 settimane</span>
+                    <p style="font-size:12px;color:#666;">Applicazione cromia storica su base calce, velature decorative, fascia a scacchiera.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>🏠 Lavori ai Terrazzi e Balconi</h4>
+                    <span class="duration">2-3 settimane</span>
+                    <p style="font-size:12px;color:#666;">Impermeabilizzazione, pavimentazione in cotto, ripristino ringhiere in ferro battuto.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>🛡️ Trattamenti Finali + Smontaggio</h4>
+                    <span class="duration">10-14 giorni</span>
+                    <p style="font-size:12px;color:#666;">Idrofugo, consolidante stucchi, antigraffiti, smontaggio ponteggio, documentazione finale.</p>
+                </div>
+            </div>
+            <div class="alert alert-success" style="margin-top:20px;">
+                ⏱️ <strong>Durata totale lavori (escluso iter burocratico): 4-5 mesi</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 6: CHECKLIST -->
+    <div id="tab-checklist" class="tab-content">
+        <div class="tab-panel">
+            <div style="background:var(--bianco); border-radius:10px; padding:16px; box-shadow:0 2px 10px rgba(0,0,0,0.07);">
+                <ul class="checklist">
+                    <li>Rete di sicurezza sul cornicione (intervento urgente)</li>
+                    <li>Monitoraggio lesione verticale con fessurimetro</li>
+                    <li>Verifica vincolo Soprintendenza ABAP Napoli</li>
+                    <li>Analisi stratigrafica colori originali (almeno 3 punti)</li>
+                    <li>Documentazione fotografica completa della facciata</li>
+                    <li>Presentazione SCIA/PDC al Comune di Frattamaggiore</li>
+                    <li>Redazione Piano di Sicurezza e Coordinamento</li>
+                    <li>Test di pulitura a campione su area non visibile</li>
+                    <li>Verifica ferri armatura balconi (carotaggio + carbonatazione)</li>
+                    <li>Scelta fornitore colori a calce (Keim, Limelit o equiv.)</li>
+                    <li>Approvazione campioni cromatici dalla Soprintendenza</li>
+                    <li>Pre-consolidamento stucchi decoesi prima della pulitura</li>
+                    <li>Pulitura biocida + attesa 72h prima di intervenire</li>
+                    <li>Consolidamento distacchi con iniezioni NHL 3.5</li>
+                    <li>Restauro lunetta allegorica (locomotiva) — specialista</li>
+                    <li>Restauro conchiglia centrale — ricostruzione volumetrica</li>
+                    <li>Restauro cariatidi femminili e leone/pantera</li>
+                    <li>Verifica e consolidamento fascia a scacchiera</li>
+                    <li>Ripristino intonaci con malta compatibile (calce + pozzolana)</li>
+                    <li>Riprofilatura cornici, torciglioni, modanature</li>
+                    <li>Impermeabilizzazione terrazzi e balconi</li>
+                    <li>Posa pavimentazione in cotto napoletano</li>
+                    <li>Verniciatura ringhiere in ferro battuto</li>
+                    <li>Tinteggiatura facciata su base calce</li>
+                    <li>Reintegro tessere mancanti fascia a scacchiera</li>
+                    <li>Applicazione idrofugo trasparente su tutta la facciata</li>
+                    <li>Antigraffiti sul basamento</li>
+                    <li>Documentazione fotografica post-operam per archivio storico</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /container -->
+
+<footer>
+    <div class="liberty-border" style="margin-bottom:28px;"></div>
+    <div class="footer-logo">🏛️ ArkAI — Consulenza Architettonica</div>
+    <p>Piano di Restauro Conservativo — Palazzo Schioppi, Via V. Emanuele III 91, Frattamaggiore (NA)</p>
+    <p style="margin-top:6px;">Edificio del 1912 · Stile Liberty Napoletano · Anno 2026</p>
+    <p style="margin-top:14px; font-size:11px; opacity:0.4;">
+        Tutti gli interventi sono da validare da un tecnico abilitato iscritto all'Albo
+    </p>
+</footer>
+
+<script>
+function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
